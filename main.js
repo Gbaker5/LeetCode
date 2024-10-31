@@ -144,3 +144,35 @@ twoSum([2,7,11,15], 9)
 }
 
 console.log(maxArea([1,8,6,2,5,4,8,3,7]))
+
+//solution with lower complexity
+
+var maxArea2 = function(height) {
+  let left = 0;                       // Left pointer at the start
+  let right = height.length - 1;      // Right pointer at the end
+  let highestArea = 0;
+
+  while (left < right) { //while left index is a lower index than right index 
+      // Calculate the area based on the current left and right pointers
+      let minHeight = Math.min(height[left], height[right]); //height [1,7] ->1
+      cl(minHeight)
+      let width = right - left; //difference between indices or length (8-0) ->8
+      cl(width)
+      let area = minHeight * width; //8 *1 = 8
+      cl(area)
+
+      // Update the maximum area found
+      highestArea = Math.max(highestArea, area);
+
+      // Move the pointer with the smaller height inward
+      if (height[left] < height[right]) { //so this continues to check against the larger height (whicheber is small)
+          left++; //if left is smaller move index forward
+      } else {
+          right--; // if right is smaller move index backwards
+      }
+  }
+
+  return highestArea;
+};
+
+console.log(maxArea2([1,8,6,2,5,4,8,3,7])); // Output: 49
