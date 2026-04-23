@@ -792,3 +792,68 @@ var cancellable = function (fn, args, t) {
     clearInterval(intervalId);
   };
 };
+
+//7. Reverse Integer
+//Medium
+//
+//Topics
+//premium lock icon
+//Companies
+//Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+//
+//Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+//
+// 
+//
+//Example 1:
+//
+//Input: x = 123
+//Output: 321
+//Example 2:
+//
+//Input: x = -123
+//Output: -321
+//Example 3:
+//
+//Input: x = 120
+//Output: 21
+// 
+//
+//Constraints:
+//
+//-231 <= x <= 231 - 1
+
+
+var reverse = function(x) {
+    //take in an integer? integers only? not strings?
+    //a signed 32 bit integer is a number between 1 and 2^31
+    //number goven will be in the correct range? 
+    //reversed number has to be between correct range?
+    //if number has trailing 00s then the inverse shoudnt have them            (reversed number shouldnt have leading zeros)
+    // so if I return the reversed number 
+    //as a number
+    //and the number is  in the correct signed 32 bit integer range then ive solved the equation?
+
+    //check if negative
+    //turn number to string
+    //reverse string
+    //convert to number
+    //if or while statement that checks number is in range
+    //return number if in range
+    //return zero if else
+
+        const posNum =  Math.abs(x) //remove negatives if neg
+        const revNumStr = posNum.toString().split("").reverse().join("") //create arr, convert to str, and join'
+        let revNum = Number(revNumStr) //convert to num
+
+        x < 0 ? revNum = revNum * -1 : revNum = revNum //check if num was positive or negative and apply neg sign if necessary
+
+        //calculate 32 bit parameters
+        const max = Math.pow(2,31)
+        console.log(max)
+        if(revNum > (max * -1) && revNum <= max ){
+          console.log( revNum)
+        }else console.log( 0)
+};
+
+reverse(-123)
