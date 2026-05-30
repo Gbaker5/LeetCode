@@ -994,3 +994,158 @@ var searchRange = function(nums, target) {
 };
 
 searchRange([5,7,7,8,8,10])
+
+//36. Valid Sudoku
+//Solved
+//Medium
+//
+//Topics
+//premium lock icon
+//Companies
+//Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+//
+//Each row must contain the digits 1-9 without repetition.
+//Each column must contain the digits 1-9 without repetition.
+//Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+//Note:
+//
+//A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+//Only the filled cells need to be validated according to the mentioned rules.
+// 
+//
+//Example 1:
+//
+//
+//Input: board = 
+//[["5","3",".",".","7",".",".",".","."]
+//,["6",".",".","1","9","5",".",".","."]
+//,[".","9","8",".",".",".",".","6","."]
+//,["8",".",".",".","6",".",".",".","3"]
+//,["4",".",".","8",".","3",".",".","1"]
+//,["7",".",".",".","2",".",".",".","6"]
+//,[".","6",".",".",".",".","2","8","."]
+//,[".",".",".","4","1","9",".",".","5"]
+//,[".",".",".",".","8",".",".","7","9"]]
+//Output: true
+//Example 2:
+//
+//Input: board = 
+//[["8","3",".",".","7",".",".",".","."]
+//,["6",".",".","1","9","5",".",".","."]
+//,[".","9","8",".",".",".",".","6","."]
+//,["8",".",".",".","6",".",".",".","3"]
+//,["4",".",".","8",".","3",".",".","1"]
+//,["7",".",".",".","2",".",".",".","6"]
+//,[".","6",".",".",".",".","2","8","."]
+//,[".",".",".","4","1","9",".",".","5"]
+//,[".",".",".",".","8",".",".","7","9"]]
+//Output: false
+//Explanation: Same as Example 1, except with the 5 in the top left corner being modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid.
+// 
+//
+//Constraints:
+//
+//board.length == 9
+//board[i].length == 9
+//board[i][j] is a digit 1-9 or '.'.
+
+var isValidSudoku = function(board) {
+  
+    let boxone = []
+    let boxtwo = []
+    let boxthree = []
+    let boxfour = []
+    let boxfive = []
+    let boxsix = []
+    let boxseven = []
+    let boxeight = []
+    let boxnine = []
+
+    let colone = []
+    let coltwo = []
+    let colthree = []
+    let colfour = []
+    let colfive = []
+    let colsix = []
+    let colseven = []
+    let coleight = []
+    let colnine = []
+
+    
+    //put remove dots and filter for duplicates in one
+
+    for(i=0;i<3;i++){
+       boxone.push(board[0][i],board[1][i],board[2][i])
+       boxtwo.push(board[0][i+3],board[1][i+3],board[2][i+3])
+       boxthree.push(board[0][i+6],board[1][i+6],board[2][i+6])
+
+       boxfour.push(board[3][i],board[4][i],board[5][i])
+       boxfive.push(board[3][i+3],board[4][i+3],board[5][i+3])
+       boxsix.push(board[3][i+6],board[4][i+6],board[5][i+6])
+
+       boxseven.push(board[6][i],board[7][i],board[8][i])
+       boxeight.push(board[6][i+3],board[7][i+3],board[8][i+3])
+       boxnine.push(board[6][i+6],board[7][i+6],board[8][i+6])
+       
+    }
+
+    for(j=0;j<9;j++){
+      colone.push(board[j][0])
+      coltwo.push(board[j][1])
+      colthree.push(board[j][2])
+      colfour.push(board[j][3])
+      colfive.push(board[j][4])
+      colsix.push(board[j][5])
+      colseven.push(board[j][6])
+      coleight.push(board[j][7])
+      colnine.push(board[j][8])
+    }
+
+
+    function validator(arr){
+      const noDots = arr.filter((x) => x != ".")
+      const unique = [...new Set(noDots)]
+      //console.log(noDots)
+      //console.log(unique)
+      if(noDots.length == unique.length){
+        return true
+      }else return false
+      
+    }
+
+    const firstB = validator(boxone)
+    const secondB = validator(boxtwo)
+    const thirdB = validator(boxthree)
+    const fourthB = validator(boxfour)
+    const fifthB = validator(boxfive)
+    const sixthB = validator(boxsix)
+    const seventhB = validator(boxseven)
+    const eigthB = validator(boxeight)
+    const ninthB = validator(boxnine)
+
+    const row1 = validator(board[0])
+    const row2 = validator(board[1])
+     const row3 = validator(board[2])
+    const row4 = validator(board[3])
+     const row5 = validator(board[4])
+    const row6 = validator(board[5])
+     const row7 = validator(board[6])
+    const row8 = validator(board[7])
+     const row9 = validator(board[8])
+
+     const col1 = validator(colone)
+    const col2 = validator(coltwo)
+     const col3 = validator(colthree)
+    const col4 = validator(colfour)
+     const col5 = validator(colfive)
+    const col6 = validator(colsix)
+     const col7 = validator(colseven)
+    const col8 = validator(coleight)
+     const col9 = validator(colnine)
+
+     if(firstB && secondB && thirdB && fourthB && fifthB&& sixthB&& seventhB&& eigthB && ninthB && row1 && row2 && row3 && row4 && row5 && row6 && row7 && row8 && row9 && col1 && col2 && col3 && col4 && col5 && col6 && col7 && col8 && col9){
+      return true
+     } else return false
+    
+};
+
