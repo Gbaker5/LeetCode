@@ -1149,3 +1149,87 @@ var isValidSudoku = function(board) {
     
 };
 
+//6. Zigzag Conversion
+//Solved
+//Medium
+//
+//Topics
+//premium lock icon
+//Companies
+//The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+//
+//P   A   H   N
+//A P L S I I G
+//Y   I   R
+//And then read line by line: "PAHNAPLSIIGYIR"
+//
+//Write the code that will take a string and make this conversion given a number of rows:
+//
+//string convert(string s, int numRows);
+// 
+//
+//Example 1:
+//
+//Input: s = "PAYPALISHIRING", numRows = 3
+//Output: "PAHNAPLSIIGYIR"
+//Example 2:
+//
+//Input: s = "PAYPALISHIRING", numRows = 4
+//Output: "PINALSIGYAHRPI"
+//Explanation:
+//P     I    N
+//A   L S  I G
+//Y A   H R
+//P     I
+//Example 3:
+//
+//Input: s = "A", numRows = 1
+//Output: "A"
+
+convert = function(s, numRows) {
+
+  if(numRows == 1){
+     return s
+   }
+
+    //create three empty array variables 
+    let rows = []
+    strArr = s.split("")
+    console.log(strArr)
+
+
+    for(i=0;i<numRows;i++){
+      rows.push([])
+
+    }
+    console.log(rows)
+
+   
+    let counter = 0;
+    let direction = 1; // 1 = up, -1 = down
+    let index = 0;
+
+while (index < strArr.length) {
+  //console.log(counter);
+
+  rows[counter].push(strArr[index])
+
+  if (counter === numRows - 1) {
+    direction = -1;
+  } else if (counter === 0) {
+    direction = 1;
+  }
+
+  counter += direction;
+  index++;
+
+  console.log(counter)
+  
+  //console.log(strArr[index])
+  //console.log(rows)
+}
+    //}
+return(rows.flat().join(""))
+};
+
+convert('PAYPALISHIRING', 2)
